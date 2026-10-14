@@ -32,7 +32,8 @@ RUN apt-get update \
 
 COPY worker/pyproject.toml /app/worker/pyproject.toml
 COPY worker/worker /app/worker/worker
-RUN pip install --no-cache-dir -e /app/worker
+RUN pip install --no-cache-dir -e /app/worker \
+ && pip install --no-cache-dir "starlette>=0.37,<2" "uvicorn>=0.30,<2" "cryptography>=42"
 
 COPY db/ /app/db/
 COPY scripts/ /app/scripts/
